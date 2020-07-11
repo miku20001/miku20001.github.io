@@ -15,22 +15,22 @@
 <meta property="og:site_name" content="Miku Blog">
 <meta property="og:description" content="前言目前的互联网服务都会涉及到认证和权限方面的要求， 在Java EE领域，成熟的安全框架解决方案一般有 Apache Shiro、Spring Security等两种技术选型。本文将在分布式项目上实践一下Spring Security整合OAuth2.0，实现认证和权限功能。 代码已经开源，链接在文尾所涉及的知识 Spring Security： 一个基于Spring的企业应用系统安全访问控制解">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C%E6%96%B9%E6%A1%88%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C009.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C001.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C002.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C003.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C004.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C005.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C006.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C007.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C008.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/%E6%96%B9%E6%A1%88%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/009.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/001.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/002.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/003.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/004.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/005.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/006.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/007.png">
+<meta property="og:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/008.png">
 <meta property="article:published_time" content="2020-07-09T09:31:12.000Z">
-<meta property="article:modified_time" content="2020-07-11T01:30:44.209Z">
+<meta property="article:modified_time" content="2020-07-11T01:44:38.254Z">
 <meta property="article:author" content="Miku20001">
 <meta property="article:tag" content="SpringSecurity OAuth2.0 SpringBoot SpringCloud">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/09/%E5%9F%BA%E4%BA%8ESpring-Security%E6%95%B4%E5%90%88OAuth2-0%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%5Cimg%5C%E6%96%B9%E6%A1%88%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta name="twitter:image" content="https://github.com/miku20001/miku20001.github.io/blob/master/img/%E6%96%B9%E6%A1%88%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
   
     <link rel="alternative" href="/atom.xml" title="Miku Blog" type="application/atom+xml">
   
@@ -173,7 +173,7 @@
 <li><strong><a href="https://www.mysql.com/" target="_blank" rel="noopener">MySql</a></strong> :  最流行的关系型数据库管理系统之一 。</li>
 <li><a href="https://blog.mybatis.org/" target="_blank" rel="noopener"><strong>MyBatis</strong></a> :  一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。 </li>
 </ul>
-<h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><p><img src="%5Cimg%5C%E6%96%B9%E6%A1%88%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></p>
+<h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/%E6%96%B9%E6%A1%88%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></p>
 <p>本文将设计四个独立服务，分别是：</p>
 <p>1、设计并实现一个认证中心服务(authorization_server)，用于完成用户登录，认证和权限处理。</p>
 <p>2、设计zuul网关模块(zuul)。</p>
@@ -284,36 +284,36 @@
 </ul>
 <p>本文通过授权码模式和密码模式来测试获取token。</p>
 <p>测试账号用户名：admin       密码：admin</p>
-<p><img src="%5Cimg%5C009.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/009.png" alt=""></p>
 <h3 id="授权码模式"><a href="#授权码模式" class="headerlink" title="授权码模式"></a>授权码模式</h3><ul>
 <li>访问该路径，请求授权码。 此时并没有经过过用户登录认证 ，会自动跳转到登陆认证页面。</li>
 </ul>
-<p><img src="%5Cimg%5C001.png" alt=""></p>
-<p><img src="%5Cimg%5C002.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/001.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/002.png" alt=""></p>
 <ul>
 <li>输入用户名密码登陆认证，进入到授权页面。</li>
 </ul>
-<p><img src="%5Cimg%5C003.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/003.png" alt=""></p>
 <ul>
 <li>同意授权后，会返回授权码。</li>
 </ul>
-<p><img src="%5Cimg%5C004.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/004.png" alt=""></p>
 <ul>
 <li>复制code授权码到postman测试，请求token，成功返回。</li>
 </ul>
-<p><img src="%5Cimg%5C005.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/005.png" alt=""></p>
 <h3 id="密码模式"><a href="#密码模式" class="headerlink" title="密码模式"></a>密码模式</h3><ul>
 <li>携带用户名和密码直接请求token，成功返回。</li>
 </ul>
-<p><img src="%5Cimg%5C006.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/006.png" alt=""></p>
 <h3 id="请求资源服务"><a href="#请求资源服务" class="headerlink" title="请求资源服务"></a>请求资源服务</h3><ul>
 <li>验证token的正确性。</li>
 </ul>
-<p><img src="%5Cimg%5C007.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/007.png" alt=""></p>
 <ul>
 <li>携带token访问资源服务。</li>
 </ul>
-<p><img src="%5Cimg%5C008.png" alt=""></p>
+<p><img src="https://github.com/miku20001/miku20001.github.io/blob/master/img/008.png" alt=""></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><p>受篇幅所限，本文应该说实践了一下精简流程的Spring Security整合OAuth2.0和JWT权限控制，还有很多可以复杂和具体化的东西可以实现，比如：</p>
 <p>网关统一解析token之后再转发到各微服务。<br>认证 token也可以用数据库或缓存进行统一管理。<br>授权认证中心的统一登录页面可以自定义。<br>认证中心的授权页可以自定义。<br>自定义认证管理器。</p>
