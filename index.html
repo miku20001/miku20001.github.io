@@ -433,6 +433,94 @@
 
 
   
+    <article id="post-巴特沃斯滤波器C语言实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0/">巴特沃斯滤波器C语言实现</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2019-09-11T07:25:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h2><p> 巴特沃斯滤波器（Butterworth filter）是电子滤波器的一种，它也被称作最大平坦滤波器。巴特沃斯滤波器的特点是通频带内的频率响应曲线最大限度平坦，没有纹波，而在阻频带则逐渐下降为零 。</p>
+<p>以前有过对采集到的传感器数据作滤波处理的需求，采用巴特沃斯滤波器消除抖动。</p>
+<p>C语言实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;巴特沃斯滤波器</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Butterworth</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> curr_input, <span class="keyword">const</span> <span class="keyword">double</span> A[<span class="number">3</span>],</span></span></span><br><span class="line"><span class="function"><span class="params">				   <span class="keyword">const</span> <span class="keyword">double</span> B[<span class="number">3</span>], <span class="keyword">double</span> input[<span class="number">2</span>], <span class="keyword">double</span> output[<span class="number">2</span>])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> out;</span><br><span class="line">	out = B[<span class="number">0</span>] * curr_input +B[<span class="number">1</span>] * input[<span class="number">1</span>] +B[<span class="number">2</span>] * input[<span class="number">0</span>] - A[<span class="number">1</span>] * output[<span class="number">1</span>]</span><br><span class="line">		   - A[<span class="number">2</span>] * output[<span class="number">0</span>];			<span class="comment">//Butterworth滤波方程</span></span><br><span class="line">	input[<span class="number">0</span>] = input[<span class="number">1</span>];				<span class="comment">//输入序列保存</span></span><br><span class="line">	input[<span class="number">1</span>] = curr_input;</span><br><span class="line">	output[<span class="number">0</span>] = output[<span class="number">1</span>];				<span class="comment">//输出序列保存</span></span><br><span class="line">	output[<span class="number">1</span>] = out;</span><br><span class="line">	<span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用matlab计算出的滤波参数如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> kA1[<span class="number">3</span>] = &#123;<span class="number">0.0</span>, <span class="number">-1.99111429220165</span>, <span class="number">0.991153595868936</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> kB1[<span class="number">3</span>] = &#123;<span class="number">9.82591682047174</span>/<span class="number">1000000</span>, <span class="number">1.96518336409435</span>/<span class="number">100000</span>, <span class="number">9.82591682047174</span>/<span class="number">1000000</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>matlab计算公式如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs = <span class="number">1000</span>; <span class="comment">%采样频率</span></span><br><span class="line">fc = <span class="number">1</span>;  <span class="comment">%1hz滤波频率</span></span><br><span class="line"></span><br><span class="line">[B,A] = butter(<span class="number">2</span>,fc/(fs/<span class="number">2</span>),<span class="string">'low'</span>);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">随笔 matlab Butterworth filter</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
@@ -519,6 +607,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringSecurity OAuth2.0 SpringBoot SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">随笔 matlab Butterworth filter</a>
               </li>
             
             <div class="clearfix"></div>
